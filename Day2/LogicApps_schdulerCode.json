@@ -1,0 +1,324 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Delay_25_Minute": {
+                "inputs": {
+                    "interval": {
+                        "count": 25,
+                        "unit": "Minute"
+                    }
+                },
+                "runAfter": {
+                    "Start_the_coffee,_set_out_4_cups": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Wait"
+            },
+            "Delay_4": {
+                "inputs": {
+                    "interval": {
+                        "count": 5,
+                        "unit": "Minute"
+                    }
+                },
+                "runAfter": {
+                    "Light_the_candles": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Wait"
+            },
+            "Delay_4_Minute": {
+                "inputs": {
+                    "interval": {
+                        "count": 4,
+                        "unit": "Minute"
+                    }
+                },
+                "runAfter": {
+                    "Deliver_the_coffee_to_Sister_and_Brother": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Wait"
+            },
+            "Delay_5": {
+                "inputs": {
+                    "interval": {
+                        "count": 4,
+                        "unit": "Minute"
+                    }
+                },
+                "runAfter": {
+                    "Deliver_the_coffee_to_Mom_and_Dad": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Wait"
+            },
+            "Delay_5_Minute": {
+                "inputs": {
+                    "interval": {
+                        "count": 5,
+                        "unit": "Minute"
+                    }
+                },
+                "runAfter": {
+                    "Pour_two_cups": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Wait"
+            },
+            "Delay_6": {
+                "inputs": {
+                    "interval": {
+                        "count": 1,
+                        "unit": "Minute"
+                    }
+                },
+                "runAfter": {
+                    "Return_to_kitchen,_fill_two_more_cups": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Wait"
+            },
+            "Delay_7": {
+                "inputs": {
+                    "interval": {
+                        "count": 5,
+                        "unit": "Minute"
+                    }
+                },
+                "runAfter": {
+                    "Relight_the_candles": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Wait"
+            },
+            "Deliver_the_coffee_to_Mom_and_Dad": {
+                "inputs": {
+                    "body": {
+                        "body": "Lucky, Deliver the coffee to Mom and Dad",
+                        "from": "TwilioFromNumberPlaceHolder",
+                        "to": "@variables('ToPhoneNumber')"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['twilio_1']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/Messages.json"
+                },
+                "runAfter": {
+                    "Delay_4": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Deliver_the_coffee_to_Sister_and_Brother": {
+                "inputs": {
+                    "body": {
+                        "body": "Lucky, Deliver the coffee to Sister and Brother",
+                        "from": "TwilioFromNumberPlaceHolder",
+                        "to": "@variables('ToPhoneNumber')"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['twilio_1']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/Messages.json"
+                },
+                "runAfter": {
+                    "Delay_7": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Light_the_candles": {
+                "inputs": {
+                    "body": {
+                        "body": "Lucky, Light the candles",
+                        "from": "TwilioFromNumberPlaceHolder",
+                        "to": "@variables('ToPhoneNumber')"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['twilio_1']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/Messages.json"
+                },
+                "runAfter": {
+                    "Delay_5_Minute": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Pour_two_cups": {
+                "inputs": {
+                    "body": {
+                        "body": "Lucky, Pour two cups",
+                        "from": "TwilioFromNumberPlaceHolder",
+                        "to": "@variables('ToPhoneNumber')"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['twilio_1']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/Messages.json"
+                },
+                "runAfter": {
+                    "Delay_25_Minute": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Relight_the_candles": {
+                "inputs": {
+                    "body": {
+                        "body": "Lucky, Relight the candles",
+                        "from": "TwilioFromNumberPlaceHolder",
+                        "to": "@variables('ToPhoneNumber')"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['twilio_1']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/Messages.json"
+                },
+                "runAfter": {
+                    "Delay_6": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Return_to_kitchen,_fill_two_more_cups": {
+                "inputs": {
+                    "body": {
+                        "body": "Lucky, Return to kitchen, fill two more cups",
+                        "from": "TwilioFromNumberPlaceHolder",
+                        "to": "@variables('ToPhoneNumber')"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['twilio_1']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/Messages.json"
+                },
+                "runAfter": {
+                    "Delay_5": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Return_to_kitchen,_take_a_break!": {
+                "inputs": {
+                    "body": {
+                        "body": "Lucky, Return to kitchen, take a break!",
+                        "from": "TwilioFromNumberPlaceHolder",
+                        "to": "@variables('ToPhoneNumber')"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['twilio_1']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/Messages.json"
+                },
+                "runAfter": {
+                    "Delay_4_Minute": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Set_Lucy's_Phone_Number": {
+                "inputs": {
+                    "variables": [
+                        {
+                            "name": "ToPhoneNumber",
+                            "type": "string",
+                            "value": "+12027539664"
+                        }
+                    ]
+                },
+                "runAfter": {},
+                "type": "InitializeVariable"
+            },
+            "Start_the_coffee,_set_out_4_cups": {
+                "inputs": {
+                    "body": {
+                        "body": "Lucky, Start the coffee, set out 4 cups",
+                        "from": "TwilioFromNumberPlaceHolder",
+                        "to": "@variables('ToPhoneNumber')"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['twilio_1']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/Messages.json"
+                },
+                "runAfter": {
+                    "Set_Lucy's_Phone_Number": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "defaultValue": {},
+                "type": "Object"
+            }
+        },
+        "triggers": {
+            "Lucky's_Reminder_for_Coffee_Prep_on_13th_Dec": {
+                "recurrence": {
+                    "frequency": "Month",
+                    "interval": 12,
+                    "startTime": "2019-12-13T08:00:00Z",
+                    "timeZone": "W. Europe Standard Time"
+                },
+                "type": "Recurrence"
+            }
+        }
+    },
+    "parameters": {
+        "$connections": {
+            "value": {
+                "twilio_1": {
+                    "connectionId": "/subscriptions/d8409b4c-03a8-4d2f-aa9d-3a46cfbd1476/resourceGroups/25daysofserverless/providers/Microsoft.Web/connections/twilio-1",
+                    "connectionName": "twilio-1",
+                    "id": "/subscriptions/d8409b4c-03a8-4d2f-aa9d-3a46cfbd1476/providers/Microsoft.Web/locations/centralus/managedApis/twilio"
+                }
+            }
+        }
+    }
+}
